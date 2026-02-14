@@ -1,0 +1,42 @@
+# Real robot: so_arm_100_hardware. Serial read of 6 servos takes ~75 ms, so use 10 Hz to avoid overrun.
+real_controller_manager:
+  ros__parameters:
+    update_rate: 10
+    kienmatics_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+    gripper_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+# Same content for "real only" mode when node is named controller_manager
+controller_manager:
+  ros__parameters:
+    update_rate: 10
+    kienmatics_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+    gripper_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+kienmatics_controller:
+  ros__parameters:
+    joints: [shoulder_pan, shoulder_lift, elbow_flex, wrist_flex, wrist_roll]
+    command_interfaces: [position]
+    state_interfaces: [position]
+    allow_nonzero_velocity_at_trajectory_end: true
+    # Use actual hardware state on activation (not last command) so robot doesn't jump to wrong pose each startup
+    set_last_command_interface_value_as_state_on_activation: false
+
+gripper_controller:
+  ros__parameters:
+    joints: [gripper]
+    command_interfaces: [position]
+    state_interfaces: [position]
+    allow_nonzero_velocity_at_trajectory_end: true
+    set_last_command_interface_value_as_state_on_activation: false
+
+joint_state_broadcaster:
+  ros__parameters:
+    frame_id: world

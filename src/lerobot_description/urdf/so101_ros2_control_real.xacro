@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- calibration_file and serial_port come from parent (so101.urdf.xacro) -->
+  <!-- Real hardware: so_arm_100_hardware. Joint names match MoveIt (shoulder_pan, etc.). -->
+  <ros2_control name="RobotSystem" type="system">
+    <hardware>
+      <plugin>so_arm_100_controller/SOARM100Interface</plugin>
+      <param name="use_serial">true</param>
+      <param name="calibration_file">$(arg calibration_file)</param>
+      <param name="serial_port">$(arg serial_port)</param>
+      <param name="serial_baudrate">1000000</param>
+    </hardware>
+    <joint name="shoulder_pan">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+    </joint>
+    <joint name="shoulder_lift">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+    </joint>
+    <joint name="elbow_flex">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+    </joint>
+    <joint name="wrist_flex">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+    </joint>
+    <joint name="wrist_roll">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+    </joint>
+    <joint name="gripper">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+    </joint>
+  </ros2_control>
+</robot>
