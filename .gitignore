@@ -1,10 +1,55 @@
-
-# folders
-.vscode/
+# --- ROS 2 / colcon ---
 build/
 install/
 log/
-
-*~
-*__pycache__/
 *.log
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+.eggs/
+dist/
+*.manifest
+*.spec
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+ENV/
+
+# --- IDEs / editors ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.cproject
+.settings/
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+*.temp
+
+# --- C++ / CMake ---
+*.o
+*.a
+*.dylib
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cbp
+
+# --- Misc ---
+*.bag
+*.db3

@@ -1,0 +1,3 @@
+[submodule "src/so_arm_100_hardware"]
+	path = src/so_arm_100_hardware
+	url = git@github.com:brukg/so_arm_100_hardware.git

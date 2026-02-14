@@ -1,0 +1,9 @@
+# Git LFS: track large binary / mesh assets
+*.stl filter=lfs diff=lfs merge=lfs -text
+*.dae filter=lfs diff=lfs merge=lfs -text
+*.obj filter=lfs diff=lfs merge=lfs -text
+*.ply filter=lfs diff=lfs merge=lfs -text
+
+# Optional: uncomment if you commit bag files and want them in LFS
+# *.bag filter=lfs diff=lfs merge=lfs -text
+# *.db3 filter=lfs diff=lfs merge=lfs -text
