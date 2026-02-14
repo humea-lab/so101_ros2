@@ -19,6 +19,12 @@ def generate_launch_description():
                                         ),
                                       description="Absolute path to robot urdf file"
     )
+    # Controller config for gz_ros2_control. Default: lerobot_controller. For MoveIt use lerobot_moveit config.
+    ros2_control_config_arg = DeclareLaunchArgument(
+        "ros2_control_config_file",
+        default_value=os.path.join(get_package_share_directory("lerobot_controller"), "config", "so101_controllers.yaml"),
+        description="Path to ros2_controllers.yaml (use lerobot_moveit config for Gazebo+MoveIt)",
+    )
 
     gazebo_resource_path = SetEnvironmentVariable(
         name="GZ_SIM_RESOURCE_PATH",
@@ -30,6 +36,8 @@ def generate_launch_description():
     robot_description = ParameterValue(Command([
             "xacro ",
             LaunchConfiguration("model"),
+            " use_primitive_collision:=true",
+            " ros2_control_config_file:=", LaunchConfiguration("ros2_control_config_file"),
         ]),
         value_type=str
     )
@@ -68,6 +76,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         model_arg,
+        ros2_control_config_arg,
         gazebo_resource_path,
         robot_state_publisher_node,
         gazebo,

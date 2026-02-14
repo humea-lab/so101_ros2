@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
-<robot name="so101" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="$(arg robot_name)" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:arg name="robot_name" default="so101" />
+    <!-- Pass through for Gazebo: use MoveIt controller config when launching with MoveIt (kienmatics_controller) -->
+    <xacro:arg name="ros2_control_config_file" default="$(find lerobot_controller)/config/so101_controllers.yaml" />
 
-    <xacro:include filename="$(find lerobot_description)/urdf/so101_base.xacro" />
+    <xacro:include filename="$(find lerobot_description)/urdf/so101_new_calib.urdf" />
     <xacro:include filename="$(find lerobot_description)/urdf/so101_gazebo.xacro" />
     <xacro:include filename="$(find lerobot_description)/urdf/so101_ros2_control.xacro" />
-
-
 </robot>

@@ -1,10 +1,22 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- Expects xacro arg ros2_control_config_file (set in so101.urdf.xacro) -->
+
+    <!-- Fix base to world in Gazebo: root link "world" is fixed when model is spawned -->
+    <link name="world"/>
+    <joint name="world_fixed" type="fixed">
+        <parent link="world"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+    <gazebo reference="world">
+        <static>true</static>
+    </gazebo>
 
     <!-- ROS 2 Control -->
     <gazebo>
         <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-            <parameters>$(find lerobot_controller)/config/so101_controllers.yaml</parameters>
+            <parameters>$(arg ros2_control_config_file)</parameters>
         </plugin>
     </gazebo>
 
