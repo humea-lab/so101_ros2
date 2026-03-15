@@ -106,14 +106,7 @@ def generate_launch_description():
         ],
     )
 
-    # Mirror: MoveIt sends here; mirror forwards to Gazebo + real
-    trajectory_mirror_node = Node(
-        package="lerobot_controller",
-        executable="trajectory_mirror_node.py",
-        name="trajectory_mirror",
-        namespace="trajectory_mirror",
-        output="screen",
-    )
+  
 
     moveit_config = (
         MoveItConfigsBuilder("so101_new_calib", package_name="lerobot_moveit")
@@ -177,7 +170,7 @@ def generate_launch_description():
         spawn_entity,
         clock_bridge,
         delayed_controllers,
-        trajectory_mirror_node,
+
         move_group_node,
         rviz_node,
     ])

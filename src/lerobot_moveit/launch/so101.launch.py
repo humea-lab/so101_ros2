@@ -168,15 +168,7 @@ def generate_launch_description():
         condition=sim_or_both_cond,
     )
 
-    # Trajectory mirror only when both
-    trajectory_mirror_node = Node(
-        package="lerobot_controller",
-        executable="trajectory_mirror_node.py",
-        name="trajectory_mirror",
-        namespace="trajectory_mirror",
-        output="screen",
-        condition=both_mode_cond,
-    )
+
 
     # MoveIt
     moveit_config = (
@@ -304,7 +296,6 @@ def generate_launch_description():
         delayed_sim_controllers,
         real_launch_controller_manager,
         real_launch_real_controller_manager,
-        trajectory_mirror_node,
         move_group_sim,
         move_group_real,
         move_group_both,
