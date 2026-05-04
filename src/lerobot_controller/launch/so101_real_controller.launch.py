@@ -98,7 +98,7 @@ def generate_launch_description():
         package="controller_manager",
         executable="spawner",
         arguments=[
-            "kienmatics_controller",
+            "kinematics_controller",
             "--controller-manager",
             controller_manager_name,
         ],

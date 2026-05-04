@@ -8,13 +8,13 @@ ROS 2 Jazzy workspace for the **LeRobot SO-ARM101** (SO101) robotic arm: descrip
 
 ---
 
-
 ## Features
+
 - **Hardware Interface** integrated with so_arm_100_hardware.
 - **ROS 2** (Jazzy recommended) with **Gazebo Harmonic**
 - **Unified launch**: one command starts Gazebo, MoveIt `move_group`, and RViz — plan and execute from MoveIt and see the robot move in Gazebo
 - **URDF/Xacro** with updated calibration (`so101_new_calib`)
-- **ROS 2 Control**  for real and fake(gazebo) hardware.
+- **ROS 2 Control** for real and fake(gazebo) hardware.
 - **MoveIt 2** motion planning for arm (OMPL)
 - **RViz** visualization
 
@@ -85,11 +85,11 @@ ros2 launch lerobot_moveit so101.launch.py robot_mode:=real
 - **`robot_mode:=sim`** (default): Gazebo + MoveIt + RViz. Plan and Execute drives the simulated robot.
 - **`robot_mode:=real`**: Real hardware + MoveIt + RViz. Connect the arm via USB (e.g. `/dev/ttyACM0`); override with `serial_port:=/dev/ttyUSB0` if needed (passed to the real controller).
 
-
 In RViz use **Motion Planning** and **Execute**; planning library **OMPL** for arm and gripper.
 
 **Real robot: no movement?**
-- **Arm**: In the Motion Planning panel, set **Planning Group** to **kienmatics** (not "gripper"). Then move the interactive marker to a new pose and use Plan & Execute.
+
+- **Arm**: In the Motion Planning panel, set **Planning Group** to **kinematics** (not "gripper"). Then move the interactive marker to a new pose and use Plan & Execute.
 - **Gripper**: Set Planning Group to **gripper**, change the gripper target (drag the marker or set a new joint goal), then Plan & Execute.
 - If the target pose is the same as the current one, the plan has zero motion and the controller still reports "Goal reached" with no visible movement.
 - Check USB: `ls -l /dev/ttyACM0`, user in `dialout` group; override port with `serial_port:=/dev/ttyUSB0` if the arm is on a different port.
@@ -110,13 +110,12 @@ In RViz use **Motion Planning** and **Execute**; planning library **OMPL** for a
 
 ## Workspace layout
 
-| Package               | Description |
-|-----------------------|-------------|
-| `lerobot_description` | URDF/Xacro, meshes, Gazebo and RSP launch files |
-| `lerobot_controller`  | ROS 2 Control controller config and launch |
-| `lerobot_moveit`      | MoveIt 2 config (so101_new_calib), unified Gazebo+MoveIt+Rviz launch |
+| Package               | Description                                                                                                                                                                  |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `lerobot_description` | URDF/Xacro, meshes, Gazebo and RSP launch files                                                                                                                              |
+| `lerobot_controller`  | ROS 2 Control controller config and launch                                                                                                                                   |
+| `lerobot_moveit`      | MoveIt 2 config (so101_new_calib), unified Gazebo+MoveIt+Rviz launch                                                                                                         |
 | `so_arm_100_hardware` | **Submodule** — ROS 2 Control hardware interface and ST3215 servo API (same protocol as SO101 servos). Used for real SO101; joint names and calibration come from this repo. |
-
 
 ## Credit and origin
 
