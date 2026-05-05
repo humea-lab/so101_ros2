@@ -82,6 +82,9 @@ ros2 launch lerobot_moveit so101.launch.py robot_mode:=real
 
 ```
 
+> [!IMPORTANT]
+> Before you launch the real robot, you must complete the [robot calibration](https://huggingface.co/docs/lerobot/so101#calibration-video).
+
 - **`robot_mode:=sim`** (default): Gazebo + MoveIt + RViz. Plan and Execute drives the simulated robot.
 - **`robot_mode:=real`**: Real hardware + MoveIt + RViz. Connect the arm via USB (e.g. `/dev/ttyACM0`); override with `serial_port:=/dev/ttyUSB0` if needed (passed to the real controller).
 
